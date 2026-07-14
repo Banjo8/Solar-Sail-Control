@@ -13,10 +13,10 @@ def compute_M(F, r_eq, h=1e-6):
     """
     Inputs:
         - F = r_dotdot + 2.Omega x r_dot = grad(U) + a_srp
-        - r_eq : equilibrium point 
+        - r_eq : equilibrium point
         - h : step
     Returns:
-        - M : Jacobian matrix  
+        - M : Jacobian matrix
     """
 
     M = np.zeros((3, 3))

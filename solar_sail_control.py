@@ -1,7 +1,7 @@
 import numpy as np
 import systems
 import matplotlib.pyplot as plt
-import find_orbits
+import find_orbits.linearize as linearize
 from scipy.linalg import solve_continuous_are
 from scipy.integrate import solve_ivp
 
@@ -30,8 +30,8 @@ class ControlledHillProblem(systems.HillProblem):
         self.a0_e = self.find_a0_e(r_eq)
         self.X_eq = np.concatenate((r_eq, np.zeros(3)))
         self.alpha_eq = 0.0
-        self.M = find_orbits.compute_M(lambda r: self.F(r, self.alpha_eq), r_eq)
-        self.A = find_orbits.build_A(self.M)
+        self.M = linearize.compute_M(lambda r: self.F(r, self.alpha_eq), r_eq)
+        self.A = linearize.build_A(self.M)
         self.B = self.compute_B()
 
     def rotate_about_y(self, vec, alpha):
